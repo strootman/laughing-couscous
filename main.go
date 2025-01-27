@@ -1,6 +1,6 @@
 package main
 
-import "channelcli/cmd"
+import "ytcli/cmd"
 
 func main() {
 	cmd.Execute()
