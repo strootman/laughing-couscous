@@ -8,6 +8,9 @@ import (
 	"github.com/spf13/cobra"
 )
 
+/* Status: Currently struggling with YT API auth.
+ * Service account method "works", but is not listing liked videos.
+ */
 var likedVideosCmd = &cobra.Command{
 	Use:   "likedvideos",
 	Short: "Lists all liked videos",
