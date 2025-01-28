@@ -1,19 +1,5 @@
 # laughing-couscous
-"laughing-couscous" is a codename for a Youtube CLI utility I'm writing for fun.
-The APIs I'm currently trying out via the official Google API libraries are;
+"laughing-couscous" is a playground for me to learn various languages.
+Each language is segregated into it's own folder.
+Default is to have one project per language, but this may change in the future, who knows?!
 
-* [Youtube Data API] => [Youtube Data API v3 package]
-
-`[ ]` Determine how to read env variables into go program
-
-## Authentication
-```
-UPDATE: I'm punting on the (YT) Google APIs, because there is something about the auth system I'm not grokking. I get the same errors from curl as I do here, and the point is to get golang practice.
-        So, switching gears.
-```
-This project is using [Application Default Credentials](https://cloud.google.com/docs/authentication/application-default-credentials) via `context.Background()`.
-This project also requires a service account token, so you will need to replace the generated `application_default_credential.json` with your service account's client key.
-
-
-[Youtube Data API v3 package]: https://pkg.go.dev/google.golang.org/api@v0.218.0/youtube/v3
-[Youtube Data Api]: https://developers.google.com/youtube/v3/getting-started
