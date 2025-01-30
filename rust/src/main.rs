@@ -15,12 +15,21 @@ struct Cli {
     path: std::path::PathBuf,
 }
 
-fn find_matches(content: &str, pattern: &str) {
+fn find_matches(content: &str, pattern: &str, mut writer: impl std::io::Write) {
     for line in content.lines() {
         if line.contains(pattern) {
-            println!("{}", line);
+            if let Err(e) = writeln!(writer, "{}", line) {
+                println!("Writing error: {}", e.to_string());
+            }
         }
     }
+}
+
+#[test]
+fn find_a_match() {
+    let mut result = Vec::new();
+    find_matches("lorem ipsum\ndolor sit amet\nblardy", "lorem", &mut result);
+    assert_eq!(result, b"lorem ipsum\n");
 }
 
 // Search for a pattern in a file and display the lines that contain it
@@ -34,7 +43,7 @@ fn main() -> Result<()> {
     let path = &args.path.into_os_string().into_string().unwrap();
     let content =
         std::fs::read_to_string(path).with_context(|| format!("Could not read file `{}`", path))?;
-    find_matches(&content, &args.pattern);
+    find_matches(&content, &args.pattern, &mut std::io::stdout());
 
     println!("pattern: {}, path: {:?}", args.pattern, path);
     Ok(())
